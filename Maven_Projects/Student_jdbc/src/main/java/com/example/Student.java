@@ -1,5 +1,5 @@
 
-package main.java.com.example;
+package com.example;
 
 public class Student {
     private int id;

@@ -1,4 +1,4 @@
-package main.java.com.example;
+package com.example;
 
 import java.sql.*;
 import java.util.*;
@@ -50,6 +50,28 @@ public class StudentDAO {
         stmt.executeUpdate();
         conn.close();
     }
+//branch wise count of students
+    public Map<String, Integer> getBranchWiseCount() {
+    Map<String, Integer> map = new HashMap<>();
+
+    String sql = "SELECT dept, COUNT(*) FROM Student GROUP BY dept";
+
+    try (
+        Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery()
+    ) {
+        while (rs.next()) {
+            map.put(rs.getString(1), rs.getInt(2));
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return map;
+}
+
+
 
     // Update student
     public void updateStudent(Student stu) throws Exception {

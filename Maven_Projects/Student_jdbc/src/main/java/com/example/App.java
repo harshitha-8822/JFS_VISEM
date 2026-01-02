@@ -74,11 +74,19 @@ public class App {
                         System.out.println("Student Deleted Successfully!");
                         break;
 
-                    case 5: // Branch wise count of students
+                    case 5: // Branch-wise Count
                         Map<String, Integer> branchCount = dao.getBranchWiseCount();
                         System.out.println("\n--- Branch wise Student Count ---");
-                        for (Map.Entry<String, Integer> entry : branchCount.entrySet()) {
-                            System.out.println("Department: " + entry.getKey() + ", Count: " + entry.getValue());
+
+                        if (branchCount.isEmpty()) {
+                            System.out.println("No data available.");
+                        } else {
+                            for (Map.Entry<String, Integer> entry : branchCount.entrySet()) {
+                                System.out.println(
+                                    "Department: " + entry.getKey() +
+                                    " | Count: " + entry.getValue()
+                                );
+                            }
                         }
                         break;
 
